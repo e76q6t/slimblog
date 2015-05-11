@@ -1,0 +1,21 @@
+{% from 'macros.html' import renderPagination, renderComments %}
+
+{% extends 'base.html' %}
+
+{% block content %}
+  {% if tag %}
+    <ol class="breadcrumb">
+      <li><a href="/">ホーム</a></li>
+      <li><a href="/tags/{{ tag }}">{{ tag }}</a></li>
+    </ol>
+  {% endif %}
+
+  {% for post in posts %}
+    <section class="post-container">
+      {% include 'posts/_post.html' %}
+      {{ renderComments(post, false) }}
+    </section>
+  {% endfor %}
+  {{ renderPagination(pagination, tag) }}
+{% endblock %}
+

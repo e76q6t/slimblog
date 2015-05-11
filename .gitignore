@@ -1,0 +1,6 @@
+vendor/
+.sass-cache/
+logs/*
+public/img/uploads/*
+!public/img/uploads/thumbnails/
+!.gitkeep

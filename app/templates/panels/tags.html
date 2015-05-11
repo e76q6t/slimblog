@@ -1,0 +1,10 @@
+{% extends 'panel.html' %}
+
+{% block content %}
+<h1>タグ一覧</h1>
+<ul>
+  {% for tag in tags %}
+    <li><a href="/tags/{{ tag.name }}">{{ tag.name }} ({{ tag.cnt}})</a></li>
+  {% endfor %}
+</ul>
+{% endblock %}

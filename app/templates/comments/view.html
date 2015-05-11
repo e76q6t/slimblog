@@ -1,0 +1,9 @@
+<div class="comment">
+  {% if comment.isApproved() %}
+    <div>{{ index }}. {{ comment.username }} : {{ comment.created_at }}</div>
+    <div>{{ comment.content|nl2br }}</div>
+  {% else %}
+    <div>{{ index }}. *** : {{ comment.created_at }}</div>
+    <div class="alert alert-warning">承認待ちのコメントです。</div>
+  {% endif %}
+</div>

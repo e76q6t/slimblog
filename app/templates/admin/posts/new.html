@@ -1,0 +1,16 @@
+{% extends 'admin/admin.html' %}
+
+{% block title %}記事を投稿する{% endblock %}
+
+{% block content %}
+
+  {{ parent() }}
+
+  <div class="container">
+    <h1 class="page-header">記事を投稿する</h1>
+
+    {% include 'admin/posts/_form.html' %}
+  </div>
+
+{% endblock %}
+

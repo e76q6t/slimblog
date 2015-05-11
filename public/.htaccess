@@ -1,0 +1,9 @@
+RewriteEngine on
+
+# httpd が隠しファイル (.htaccess, .svn, .git など) を送出するのを防ぐ
+RedirectMatch 403 /\..*$
+# ディレクトリまたはファイルが存在する場合は、直接それを使う
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+# それ以外は index.php に回送する
+RewriteRule . index.php

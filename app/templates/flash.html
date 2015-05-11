@@ -1,0 +1,9 @@
+{% set flash_keys = ['success', 'info', 'warning', 'danger'] %}
+
+{% for flash_key in flash_keys %}
+  {% if flash[flash_key] %}
+    <div class="alert alert-{{ flash_key }}">
+      {{ flash[flash_key] }}
+    </div>
+  {% endif %}
+{% endfor %}

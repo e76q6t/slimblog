@@ -1,0 +1,78 @@
+{% macro renderPagination(pagination, tag) %}
+  <nav>
+    <ul class="pagination">
+      {% if pagination.hasPrevious() %}
+        <li>
+          {% if tag %}
+            <a href="/tags/{{ tag }}?page={{ pagination.page - 1 }}">Previous &laquo;</a>
+          {% else %}
+            <a href="/posts?page={{ pagination.page - 1 }}">Previous &laquo;</a>
+          {% endif %}
+        </li>
+      {% endif %}
+      {%- for page in pagination.getPages() %}
+        {% if page %}
+          {% if page != pagination.page %}
+            <li>
+              {% if tag %}
+                <a href="/tags/{{ tag }}?page={{ page }}">{{ page }}</a>
+              {% else %}
+                <a href="/posts?page={{ page }}">{{ page }}</a>
+              {% endif %}
+            </li>
+          {% else %}
+            <li class="active"><a href="#">{{ page }} <span class="sr-only">(current)</span></a></li>
+          {% endif %}
+        {% else %}
+          <li><span class="ellipsis">…</span></li>
+        {% endif %}
+      {%- endfor %}
+      {% if pagination.hasNext() %}
+        <li>
+          {% if tag %}
+            <a href="/tags/{{ tag }}?page={{ pagination.page + 1 }}">Next &raquo;</a>
+          {% else %}
+            <a href="/posts?page={{ pagination.page + 1 }}">Next &raquo;</a>
+          {% endif %}
+        </li>
+      {% endif %}
+    </ul>
+  </nav>
+{% endmacro %}
+
+{% macro renderComments(post, withForm=false) %}
+  {% if post.comments is not empty or withForm %}
+    <section class="comments">
+      <header>コメント</header>
+
+      {% if post.comments is empty %}
+        <p>コメントはありません。</p>
+      {% else %}
+        {% for comment in post.comments %}
+          {% set index = loop.index %}
+          {% include 'comments/view.html' %}
+        {% endfor %}
+      {% endif %}
+
+      {% if withForm %}
+        {% include 'comments/_form.html' %}
+      {% else %}
+        <p><a class="btn btn-primary" href="/posts/{{ post.slug }}#comment-form">コメントする</a></p>
+      {% endif %}
+    </section>
+  {% else %}
+    <p><a class="btn btn-primary" href="/posts/{{ post.slug }}#comment-form">コメントする</a></p>
+  {% endif %}
+{% endmacro %}
+
+{% macro renderBreadcrumb(parents, current) %}
+  <div class="">
+    <ol class="breadcrumb">
+      <li><a href="/">ホーム</a></li>
+      {% for parent in parents %}
+        <li><a href="{{ parent[0] }}">{{ parent[1] }}</a></li>
+      {% endfor %}
+      <li>{{ current }}</li>
+    </ol>
+  </div>
+{% endmacro %}

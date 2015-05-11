@@ -1,0 +1,28 @@
+{% from 'macros.html' import renderPagination %}
+
+{% extends 'admin/admin.html' %}
+
+{% block content %}
+  <div class="container">
+    <h1 class="page-header">記事一覧</h1>
+    <table class="table">
+      <tr>
+        <th>タイトル</th>
+        <th>本文</th>
+        <th></th>
+      </tr>
+      {% for post in posts %}
+        <tr class="post" data-post-id="{{ post.id }}">
+          <td>{{ post.title }}</td>
+          <td>{{ post.content[:50] }}</td>
+          <td>
+            <a class="btn btn-primary" href="/admin/posts/{{ post.id }}/edit">編集</a>
+            <a class="btn btn-danger post-delete" href="#">削除</a>
+          </td>
+        </tr>
+      {% endfor %}
+    </table>
+    {{ renderPagination(pagination, null) }}
+  </div>
+
+{% endblock %}

@@ -1,0 +1,173 @@
+// Import Bootstrap Compass integration
+@import "bootstrap-compass";
+
+// Import custom Bootstrap variables
+@import "bootstrap-variables";
+
+// Import Bootstrap for Sass
+@import "bootstrap";
+
+html, body {
+  height: 100%;
+  min-height: 100%;
+}
+
+body {
+  font-family: Arial,"ヒラギノ角ゴ Pro W3","Hiragino Kaku Gothic Pro",Osaka,"メイリオ",Meiryo,"ＭＳ Ｐゴシック","MS PGothic",sans-serif;
+}
+
+.wrapper {
+  border: 1px solid #ccc;
+  border-radius: $border-radius-base;
+}
+
+.login-page {
+  padding-top: 50px;
+  background-color: $gray-lighter;
+  min-height: 100%;
+
+  h1 {
+    margin: 0 0 30px;
+    text-align: center;
+  }
+
+  .login {
+    padding: 30px;
+    background-color: #fff;
+    border: 1px solid $gray-lighter;
+  }
+
+}
+
+.admin {
+  .image-modal {
+    .images {
+      .image {
+        display: inline-block;
+        padding: 3px;
+      }
+
+      .selected {
+        border: 3px solid blue;
+        margin: -3px;
+      }
+    }
+  }
+}
+
+.site-header {
+  margin: 0 0 30px;
+
+  a {
+    color: $text-color;
+  }
+}
+
+.site-footer {
+  padding: 15px 0;
+  text-align: center;
+}
+
+main {
+  padding: 20px;
+}
+
+aside {
+  padding: 20px 20px 20px 0;
+}
+
+.post-container {
+  margin: 0 0 80px;
+  .post {
+    header {
+      margin: 0 0 20px;
+      padding: 0 0 10px;
+
+      .created-at {
+        display: inline-block;
+
+        .glyphicon {
+          margin-right: 5px;
+        }
+      }
+
+      h1 {
+        margin: 0;
+        padding: 10px 0;
+        font-size: $font-size-base * 1.5;
+        font-weight: bold;
+      }
+    }
+
+    .content {
+      margin: 0 0 30px;
+      word-wrap: break-word;
+    }
+  }
+
+  .nav-container {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: $border-radius-base;
+
+    .nav {
+      background-color: $gray-lighter;
+    }
+  }
+}
+
+.comments {
+  margin:0 0 30px;
+  padding: 15px;
+  border: 1px solid #ddd;
+  font-size: $font-size-base * 0.9;
+
+  header {
+    margin: 0 0 15px;
+    padding: 0 0 5px;
+    font-weight: bold;
+    border-bottom: 1px solid #ddd;
+    color: $gray-light;
+  }
+
+  .comment {
+    margin: 0 0 20px;
+  }
+}
+
+
+.sidebar {
+  section {
+    margin: 0 0 $grid-gutter-width;
+
+    h1 {
+      font-size: 100%;
+      margin: 0 0 15px;
+      padding: 0 0 10px;
+      border-bottom: 1px solid $gray-lighter;
+    }
+
+    ul {
+      list-style: none;
+      padding-left: 0;
+      display: table;
+
+      li {
+        display: table-row;
+        margin-bottom: 0.5em;
+
+        &:before {
+          content: "•";
+          display: table-cell;
+          padding-right: 0.4em;
+        }
+
+        &:after {
+          content: "";
+          display: block;
+          margin-bottom: 0.5em;
+        }
+      }
+    }
+  }
+}

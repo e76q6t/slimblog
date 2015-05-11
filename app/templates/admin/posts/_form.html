@@ -1,0 +1,70 @@
+<form action="" method="POST" role="form" id="post-form">
+
+  {% if errors %}
+    <div class="alert alert-danger">
+      <ul>
+        {% for error in errors %}
+          <li>{{ error }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+  {% endif %}
+
+  <div class="form-group">
+    <input type="text" name="Post[title]" class="form-control" placeholder="タイトル" value="{{ data.title }}">
+  </div>
+
+  <div class="form-group">
+    <input type="text" name="Post[slug]" class="form-control" placeholder="slug" value="{{ data.slug }}">
+  </div>
+
+  <div class="form-group">
+    <input type="text" id="post-tag-input" class="form-control" placeholder="タグ">
+    <ul id="post-tags" class="list-inline">
+      {% for tag in tags %}
+        <li class="post-tag-delete"><span class="btn btn-primary">{{ tag.name }}</span></li>
+      {% endfor %}
+      {% for tagName in tagNames %}
+        <li class="post-tag-delete"><span class="btn btn-primary">{{ tagName }}</span></li>
+      {% endfor %}
+    </ul>
+  </div>
+
+  <div class="form-group">
+    <p><button class="btn btn-default" type="button" id="image-modal-button" data-toggle="modal" data-target=".image-modal"><span class="glyphicon glyphicon-picture"></span> 画像を挿入</button></p>
+    <textarea name="Post[content]" rows="30" placeholder="本文" class="form-control post-content">{{ data.content }}</textarea>
+  </div>
+
+  <div class="form-group">
+    <select name="Post[status]">
+      {% for key, value in post_status_list %}
+        <option value="{{ key }}">{{ value }}</option>
+      {% endfor %}
+    </select>
+  </div>
+
+  <button type="submit" class="btn btn-lg btn-primary">投稿</button>
+
+</form>
+
+<div class="image-modal modal fade">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title"><span class="glyphicon glyphicon-picture"></span> 画像を挿入 <button type="button" class="btn btn-info" id="upload-image-button"><span class="glyphicon glyphicon-plus"></span> 画像を追加</button></h4>
+      </div>
+      <div class="modal-body images">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-danger" id="image-delete-button">画像を削除</button>
+        <button type="button" class="btn btn-primary" id="image-insert-button">画像を挿入</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<form action="/admin/images/upload" id="file-form" class="hidden" enctype="multipart/form-data">
+  <input type="file" id="file-input">
+</form>

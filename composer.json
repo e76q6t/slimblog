@@ -1,0 +1,25 @@
+{
+    "require": {
+        "slim/slim": "~2.6",
+        "slim/extras": "~2.0",
+        "slim/views": "0.1.*",
+        "twig/twig": "~1.18",
+        "ext-mbstring": "*",
+        "vlucas/valitron": "~1.2",
+        "intervention/image": "~2.2",
+        "illuminate/database": "~5.0",
+        "illuminate/events": "~5.0",
+        "slimcontroller/slimcontroller": "^0.4.3",
+        "aptoma/twig-markdown": "~1.2",
+        "michelf/php-markdown": "~1.3"
+    },
+    "autoload": {
+        "psr-4": {"app\\": "app/"}
+    },
+    "scripts": {
+        "post-install-cmd": [
+            "chmod -R 777 logs/",
+            "chmod -R 777 public/img/uploads/"
+        ]
+    }
+}
